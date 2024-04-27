@@ -27,4 +27,4 @@ export const headerLinks = [
   }
 
 
-  export const DB_NAME = "evently"
+  export const DB_NAME = "Evently"

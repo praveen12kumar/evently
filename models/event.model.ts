@@ -7,14 +7,14 @@ export interface IEvent extends Document {
     _id: string;
     title: string;
     description?: string;
-    location?: string | undefined;
-    createdAt: string;
+    location?: string;
+    createdAt: Date;
     imageUrl: string;
-    startDateTime: string;
-    endDateTime: string;
-    price: number;
+    startDateTime: Date;
+    endDateTime: Date;
+    price?: string;
     isFree: boolean;
-    url: string;
+    url?: string;
     category: { _id: string; name: string };
     organiser: { _id: string; firstname: string; lastname: string };
 }
@@ -28,48 +28,42 @@ const eventSchema:Schema<IEvent> = new Schema({
     },
     description:{
         type:String,
-        required:[true, "description is required"]
     },
     location:{
         type:String,
-        required:[true, "location is required"]
     },
     createdAt:{
-        type:String,
-        required:[true, "createdAt is required"]
+        type:Date,
+        default:Date.now
     },
     imageUrl:{
         type:String,
         required:[true, "imageUrl is required"]
     },
     startDateTime:{
-        type:String,
-        required:[true, "startDateTime is required"]
+        type:Date,
+        default:Date.now,
     },
     endDateTime:{
-        type:String,
-        required:[true, "endDateTime is required"]
+        type:Date,
+        default:Date.now,
     },
     price:{
-        type:Number,
-        required:[true, "price is required"]
+        type:String,
     },
     isFree:{
         type:Boolean,
-        required:[true, "isFree is required"]
+        default:false,
     },
     url:{
         type:String,
-        required:[true, "url is required"]
     },
     category:{
         type:Schema.Types.ObjectId,
-        required:true,
         ref:"Category"
     },
     organiser:{
         type:Schema.Types.ObjectId,
-        required:true,
         ref:"User"
     }
 })
